@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Jeopardy - Trinity Church</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="main-header">
+            <div class="header-content">
+                <div class="church-logo">
+                    <i class="fas fa-cross"></i>
+                    <h1>Trinity Church</h1>
+                </div>
+                <h2 class="game-title">Christmas Jeopardy</h2>
+                <div class="header-decoration">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-snowflake"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Team Setup Screen -->
+        <div id="team-setup" class="screen active">
+            <div class="setup-container">
+                <div class="setup-card">
+                    <div class="card-header">
+                        <h2>Setup Teams</h2>
+                        <p>Enter team names to begin the game</p>
+                    </div>
+                    
+                    <div class="teams-container">
+                        <div class="team-input-card">
+                            <div class="team-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="team-input-group">
+                                <label>Team 1</label>
+                                <input type="text" id="team1-name" placeholder="Enter team name" value="Team 1">
+                            </div>
+                        </div>
+                        
+                        <div class="team-input-card">
+                            <div class="team-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="team-input-group">
+                                <label>Team 2</label>
+                                <input type="text" id="team2-name" placeholder="Enter team name" value="Team 2">
+                            </div>
+                        </div>
+                        
+                        <div class="team-input-card optional">
+                            <div class="team-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="team-input-group">
+                                <label>Team 3 <span class="optional-text">(Optional)</span></label>
+                                <input type="text" id="team3-name" placeholder="Enter team name">
+                            </div>
+                        </div>
+                        
+                        <div class="team-input-card optional">
+                            <div class="team-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="team-input-group">
+                                <label>Team 4 <span class="optional-text">(Optional)</span></label>
+                                <input type="text" id="team4-name" placeholder="Enter team name">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <button id="start-game" class="btn-primary">
+                            <span>Start Game</span>
+                            <i class="fas fa-play"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Game Board -->
+        <div id="game-board" class="screen">
+            <div class="game-header">
+                <div class="scoreboard-card">
+                    <div class="scoreboard-header">
+                        <h3><i class="fas fa-trophy"></i> Teams & Scores</h3>
+                        <div class="game-stats">
+                            <span id="questions-remaining">25 questions remaining</span>
+                        </div>
+                    </div>
+                    <div id="teams-display" class="teams-list"></div>
+                </div>
+                
+                <div class="game-controls">
+                    <button id="reset-game" class="btn-secondary">
+                        <i class="fas fa-redo"></i> New Game
+                    </button>
+                </div>
+            </div>
+            
+            <div class="jeopardy-board-container">
+                <div class="jeopardy-board">
+                    <div class="categories-row">
+                        <div class="category-placeholder"></div>
+                        <!-- Categories will be inserted here by JavaScript -->
+                    </div>
+                    <div class="questions-grid">
+                        <!-- Questions will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Question Modal -->
+        <div id="question-modal" class="modal">
+            <div class="modal-backdrop"></div>
+            <div class="modal-container">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <div class="modal-category">
+                            <h3 id="question-category"></h3>
+                            <span class="points-badge" id="question-points"></span>
+                        </div>
+                        <div class="modal-decoration">
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-body">
+                        <div class="question-card">
+                            <div class="question-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <p id="question-text"></p>
+                        </div>
+                        
+                        <div id="answer-section" class="answer-card hidden">
+                            <div class="answer-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="answer-content">
+                                <h4>Answer</h4>
+                                <p id="answer-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-footer">
+                        <button id="show-answer" class="btn-secondary">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        
+                        <div id="score-controls" class="score-controls hidden">
+                            <h4>Which team answered correctly?</h4>
+                            <div class="teams-buttons"></div>
+                            <button id="no-one" class="btn-warning">
+                                <i class="fas fa-times"></i> No One Got It
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over" class="screen">
+            <div class="game-over-container">
+                <div class="game-over-card">
+                    <div class="winner-crown">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <h2>Game Over!</h2>
+                    <p class="game-over-subtitle">Congratulations to our winners!</p>
+                    
+                    <div id="final-scores" class="final-scores"></div>
+                    
+                    <button id="play-again" class="btn-primary">
+                        <i class="fas fa-redo"></i> Play Again
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
