@@ -489,3 +489,232 @@ body {
         font-size: 0.8rem;
     }
 }
+
+/* Add these new styles to your existing CSS */
+
+/* Final Jeopardy Styles */
+.final-jeopardy-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.final-jeopardy-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-lg);
+    padding: 40px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--accent);
+    text-align: center;
+}
+
+.final-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+}
+
+.final-header h2 i {
+    color: var(--accent);
+    margin: 0 10px;
+}
+
+.final-category h3 {
+    font-size: 1.5rem;
+    color: var(--primary-light);
+    margin-bottom: 30px;
+}
+
+.final-question-card {
+    background: rgba(26, 71, 42, 0.05);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.final-question-card p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+    color: var(--primary);
+    text-align: left;
+}
+
+.final-answer-card {
+    background: rgba(212, 175, 55, 0.1);
+    border-radius: var(--border-radius);
+    padding: 30px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.final-answer-card h4 {
+    margin: 0 0 10px 0;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.final-answer-card p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.timer-section {
+    margin: 20px 0;
+}
+
+.timer-display {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    animation: pulse 1s infinite;
+}
+
+.final-score-controls {
+    margin-top: 30px;
+}
+
+.final-score-controls h4 {
+    margin-bottom: 20px;
+    color: var(--primary);
+}
+
+.final-team-input {
+    background: rgba(248, 250, 252, 0.8);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e8f0;
+}
+
+.final-team-input h4 {
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.wager-container, .answer-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.wager-container label, .answer-container label {
+    font-weight: 600;
+    color: var(--primary);
+    min-width: 100px;
+}
+
+.wager-input {
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100px;
+}
+
+.correct-select {
+    padding: 8px 12px;
+    border: 2px solid #e2e8f0;
+    border-radius: 4px;
+    font-size: 1rem;
+    background: white;
+}
+
+/* Fix for the game board grid */
+.categories-row {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.questions-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 15px;
+}
+
+/* Remove any leftover blue placeholder boxes */
+.category-placeholder {
+    display: none;
+}
+
+.points-header {
+    display: none;
+}
+
+/* Enhanced question cell sizing */
+.question-cell {
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    color: var(--dark);
+    padding: 20px 15px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100px;
+    box-shadow: var(--shadow);
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Keep all your existing Christmas theme styles */
+/* ... rest of your existing CSS ... */
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .categories-row, .questions-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    
+    .question-cell {
+        min-height: 90px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .categories-row, .questions-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .question-cell {
+        min-height: 80px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .categories-row, .questions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .question-cell {
+        min
