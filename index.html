@@ -112,7 +112,6 @@
             <div class="jeopardy-board-container">
                 <div class="jeopardy-board">
                     <div class="categories-row">
-                        <div class="category-placeholder"></div>
                         <!-- Categories will be inserted here by JavaScript -->
                     </div>
                     <div class="questions-grid">
@@ -166,6 +165,68 @@
                             <div class="teams-buttons"></div>
                             <button id="no-one" class="btn-warning">
                                 <i class="fas fa-times"></i> No One Got It
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Final Jeopardy Screen -->
+        <div id="final-jeopardy" class="screen">
+            <div class="final-jeopardy-container">
+                <div class="final-jeopardy-card">
+                    <div class="final-header">
+                        <h2><i class="fas fa-star"></i> Final Jeopardy <i class="fas fa-star"></i></h2>
+                        <div class="final-category">
+                            <h3>Category: <span id="final-category"></span></h3>
+                        </div>
+                    </div>
+                    
+                    <div class="final-question-section">
+                        <div class="final-question-card">
+                            <div class="question-icon">
+                                <i class="fas fa-question"></i>
+                            </div>
+                            <p id="final-question"></p>
+                        </div>
+                        
+                        <div id="final-answer-section" class="final-answer-card hidden">
+                            <div class="answer-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="answer-content">
+                                <h4>Answer</h4>
+                                <p id="final-answer"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="final-controls">
+                        <button id="start-final-jeopardy" class="btn-primary">
+                            <i class="fas fa-hourglass-start"></i> Start 60 Second Timer
+                        </button>
+                        
+                        <div id="timer-section" class="timer-section hidden">
+                            <div class="timer-display">
+                                <i class="fas fa-clock"></i>
+                                <span id="timer-display">60</span> seconds remaining
+                            </div>
+                        </div>
+                        
+                        <button id="reveal-final-answer" class="btn-secondary hidden">
+                            <i class="fas fa-eye"></i> Reveal Answer
+                        </button>
+                        
+                        <button id="award-final-points" class="btn-primary hidden">
+                            <i class="fas fa-trophy"></i> Award Points
+                        </button>
+                        
+                        <div id="final-score-controls" class="final-score-controls hidden">
+                            <h4>Enter Final Jeopardy Results</h4>
+                            <div id="final-score-inputs" class="final-score-inputs"></div>
+                            <button id="submit-final-scores" class="btn-primary">
+                                <i class="fas fa-check"></i> Calculate Final Scores
                             </button>
                         </div>
                     </div>
