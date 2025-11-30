@@ -117,12 +117,10 @@ function setupInputAnimations() {
     inputs.forEach(input => {
         input.addEventListener('focus', function() {
             this.parentElement.parentElement.style.transform = 'translateY(-5px)';
-            this.parentElement.parentElement.style.boxShadow = '0 15px 40px rgba(30, 58, 138, 0.15)';
         });
         
         input.addEventListener('blur', function() {
             this.parentElement.parentElement.style.transform = '';
-            this.parentElement.parentElement.style.boxShadow = '';
         });
     });
 }
@@ -352,6 +350,9 @@ function startFinalJeopardy() {
     document.getElementById('timer-display').textContent = '60';
     document.getElementById('start-final-jeopardy').style.display = 'block';
     document.getElementById('timer-section').classList.add('hidden');
+    document.getElementById('reveal-final-answer').classList.add('hidden');
+    document.getElementById('award-final-points').classList.add('hidden');
+    document.getElementById('final-score-controls').classList.add('hidden');
     
     showScreen('final-jeopardy');
 }
