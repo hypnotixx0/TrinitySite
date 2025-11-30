@@ -61,7 +61,12 @@ const gameData = {
                 { question: "Bill Murray plays a cynical TV executive in this 1988 Christmas classic", answer: "Scrooged", points: 1000, used: false }
             ]
         }
-    ]
+    ],
+    finalJeopardy: {
+        category: "The Christmas Story",
+        question: "According to the Gospel of Matthew, this celestial phenomenon guided the Wise Men to Jesus",
+        answer: "The Star of Bethlehem"
+    }
 };
 
 // Game State
@@ -69,7 +74,10 @@ let gameState = {
     teams: [],
     currentQuestion: null,
     usedQuestions: 0,
-    totalQuestions: 0
+    totalQuestions: 0,
+    finalJeopardyMode: false,
+    finalJeopardyTimer: null,
+    timeRemaining: 60
 };
 
 // DOM Elements
@@ -77,6 +85,7 @@ const teamSetupScreen = document.getElementById('team-setup');
 const gameBoardScreen = document.getElementById('game-board');
 const gameOverScreen = document.getElementById('game-over');
 const questionModal = document.getElementById('question-modal');
+const finalJeopardyScreen = document.getElementById('final-jeopardy');
 const questionsRemainingEl = document.getElementById('questions-remaining');
 
 // Initialize the game
@@ -93,6 +102,10 @@ function initGame() {
     document.getElementById('play-again').addEventListener('click', resetGame);
     document.getElementById('show-answer').addEventListener('click', showAnswer);
     document.getElementById('no-one').addEventListener('click', markQuestionAsUsed);
+    document.getElementById('start-final-jeopardy').addEventListener('click', startFinalJeopardyTimer);
+    document.getElementById('reveal-final-answer').addEventListener('click', revealFinalAnswer);
+    document.getElementById('award-final-points').addEventListener('click', showFinalScoreInput);
+    document.getElementById('submit-final-scores').addEventListener('click', processFinalScores);
     
     // Add input animations
     setupInputAnimations();
@@ -132,16 +145,16 @@ function startGame() {
     
     // Create teams
     gameState.teams = [
-        { name: team1Name, score: 0 },
-        { name: team2Name, score: 0 }
+        { name: team1Name, score: 0, finalWager: 0, finalAnswer: '' },
+        { name: team2Name, score: 0, finalWager: 0, finalAnswer: '' }
     ];
     
     if (team3Name) {
-        gameState.teams.push({ name: team3Name, score: 0 });
+        gameState.teams.push({ name: team3Name, score: 0, finalWager: 0, finalAnswer: '' });
     }
     
     if (team4Name) {
-        gameState.teams.push({ name: team4Name, score: 0 });
+        gameState.teams.push({ name: team4Name, score: 0, finalWager: 0, finalAnswer: '' });
     }
     
     // Initialize game board
@@ -159,7 +172,7 @@ function createGameBoard() {
     const questionsGrid = document.querySelector('.questions-grid');
     
     // Clear existing content
-    categoriesRow.innerHTML = '<div class="category-placeholder"></div>';
+    categoriesRow.innerHTML = '';
     questionsGrid.innerHTML = '';
     
     // Create category headers
@@ -170,14 +183,8 @@ function createGameBoard() {
         categoriesRow.appendChild(categoryCard);
     });
     
-    // Create points headers (vertical)
+    // Create questions grid (5 rows x 6 columns)
     for (let i = 0; i < 5; i++) {
-        const pointsHeader = document.createElement('div');
-        pointsHeader.className = 'points-header';
-        pointsHeader.textContent = `$${(i + 1) * 200}`;
-        questionsGrid.appendChild(pointsHeader);
-        
-        // Create question cells for each category
         gameData.categories.forEach(category => {
             const questionCell = document.createElement('div');
             const question = category.questions[i];
@@ -259,7 +266,7 @@ function awardPoints(teamIndex) {
     
     // Check if game is over
     if (gameState.usedQuestions >= gameState.totalQuestions) {
-        setTimeout(endGame, 500);
+        setTimeout(startFinalJeopardy, 1000);
     }
 }
 
@@ -276,7 +283,7 @@ function markQuestionAsUsed() {
         
         // Check if game is over
         if (gameState.usedQuestions >= gameState.totalQuestions) {
-            setTimeout(endGame, 500);
+            setTimeout(startFinalJeopardy, 1000);
         }
     }
 }
@@ -331,6 +338,94 @@ function updateGameBoard() {
     });
 }
 
+// Start Final Jeopardy
+function startFinalJeopardy() {
+    gameState.finalJeopardyMode = true;
+    
+    // Set up Final Jeopardy screen
+    document.getElementById('final-category').textContent = gameData.finalJeopardy.category;
+    document.getElementById('final-question').textContent = gameData.finalJeopardy.question;
+    document.getElementById('final-answer').textContent = gameData.finalJeopardy.answer;
+    
+    // Reset Final Jeopardy state
+    document.getElementById('final-answer-section').classList.add('hidden');
+    document.getElementById('timer-display').textContent = '60';
+    document.getElementById('start-final-jeopardy').style.display = 'block';
+    document.getElementById('timer-section').classList.add('hidden');
+    
+    showScreen('final-jeopardy');
+}
+
+// Start Final Jeopardy timer
+function startFinalJeopardyTimer() {
+    gameState.timeRemaining = 60;
+    document.getElementById('start-final-jeopardy').style.display = 'none';
+    document.getElementById('timer-section').classList.remove('hidden');
+    
+    gameState.finalJeopardyTimer = setInterval(() => {
+        gameState.timeRemaining--;
+        document.getElementById('timer-display').textContent = gameState.timeRemaining;
+        
+        if (gameState.timeRemaining <= 0) {
+            clearInterval(gameState.finalJeopardyTimer);
+            document.getElementById('timer-section').classList.add('hidden');
+            document.getElementById('reveal-final-answer').classList.remove('hidden');
+        }
+    }, 1000);
+}
+
+// Reveal Final Jeopardy answer
+function revealFinalAnswer() {
+    document.getElementById('final-answer-section').classList.remove('hidden');
+    document.getElementById('reveal-final-answer').classList.add('hidden');
+    document.getElementById('award-final-points').classList.remove('hidden');
+}
+
+// Show Final Jeopardy score input
+function showFinalScoreInput() {
+    const scoreInputs = document.getElementById('final-score-inputs');
+    scoreInputs.innerHTML = '';
+    
+    gameState.teams.forEach((team, index) => {
+        const teamInput = document.createElement('div');
+        teamInput.className = 'final-team-input';
+        teamInput.innerHTML = `
+            <h4>${team.name} (Current: $${team.score})</h4>
+            <div class="wager-container">
+                <label>Wager (0-${team.score}):</label>
+                <input type="number" id="wager-${index}" min="0" max="${team.score}" value="0" class="wager-input">
+            </div>
+            <div class="answer-container">
+                <label>Correct?</label>
+                <select id="correct-${index}" class="correct-select">
+                    <option value="correct">Correct ✓</option>
+                    <option value="incorrect">Incorrect ✗</option>
+                </select>
+            </div>
+        `;
+        scoreInputs.appendChild(teamInput);
+    });
+    
+    document.getElementById('award-final-points').classList.add('hidden');
+    document.getElementById('final-score-controls').classList.remove('hidden');
+}
+
+// Process Final Jeopardy scores
+function processFinalScores() {
+    gameState.teams.forEach((team, index) => {
+        const wager = parseInt(document.getElementById(`wager-${index}`).value) || 0;
+        const isCorrect = document.getElementById(`correct-${index}`).value === 'correct';
+        
+        if (isCorrect) {
+            team.score += wager;
+        } else {
+            team.score -= wager;
+        }
+    });
+    
+    endGame();
+}
+
 // End the game
 function endGame() {
     // Determine winner
@@ -381,8 +476,15 @@ function resetGame() {
         teams: [],
         currentQuestion: null,
         usedQuestions: 0,
-        totalQuestions: gameData.categories.reduce((total, category) => total + category.questions.length, 0)
+        totalQuestions: gameData.categories.reduce((total, category) => total + category.questions.length, 0),
+        finalJeopardyMode: false,
+        finalJeopardyTimer: null,
+        timeRemaining: 60
     };
+    
+    if (gameState.finalJeopardyTimer) {
+        clearInterval(gameState.finalJeopardyTimer);
+    }
     
     // Clear team name inputs
     document.getElementById('team1-name').value = 'Team 1';
