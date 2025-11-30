@@ -1,54 +1,64 @@
-// Enhanced Game Data with Christmas Theme
+// Enhanced Game Data with Christmas Theme - Jeopardy Style
 const gameData = {
     categories: [
         {
             name: "Bible Christmas",
             questions: [
-                { question: "Which gospel tells the story of Jesus' birth?", answer: "Luke", points: 100, used: false },
-                { question: "Who visited Mary to tell her she would have a baby?", answer: "The angel Gabriel", points: 200, used: false },
-                { question: "Where was Jesus born?", answer: "Bethlehem", points: 300, used: false },
-                { question: "What gifts did the wise men bring?", answer: "Gold, frankincense, and myrrh", points: 400, used: false },
-                { question: "Who was the Roman emperor when Jesus was born?", answer: "Caesar Augustus", points: 500, used: false }
+                { question: "This Gospel contains the most detailed account of Jesus' birth narrative", answer: "The Gospel of Luke", points: 200, used: false },
+                { question: "This angel told Mary she would give birth to Jesus", answer: "Gabriel", points: 400, used: false },
+                { question: "This Old Testament prophet foretold the Messiah's birth in Bethlehem", answer: "Micah", points: 600, used: false },
+                { question: "These visitors from the East brought gifts to the newborn king", answer: "The Magi or Wise Men", points: 800, used: false },
+                { question: "This decree by Caesar Augustus required Joseph & Mary to travel to Bethlehem", answer: "The census", points: 1000, used: false }
             ]
         },
         {
             name: "Christmas Carols",
             questions: [
-                { question: "Which carol contains 'fa la la la la'?", answer: "Deck the Halls", points: 100, used: false },
-                { question: "In 'Jingle Bells', what kind of sleigh is it?", answer: "One-horse open sleigh", points: 200, used: false },
-                { question: "Which carol mentions 'figgy pudding'?", answer: "We Wish You a Merry Christmas", points: 300, used: false },
-                { question: "What is the first line of 'Silent Night'?", answer: "Silent night, holy night", points: 400, used: false },
-                { question: "In 'The Twelve Days of Christmas', what is given on the 5th day?", answer: "Five golden rings", points: 500, used: false }
+                { question: "This carol mentions 'figgy pudding' & demands 'we won't go until we get some'", answer: "We Wish You a Merry Christmas", points: 200, used: false },
+                { question: "In this carol, the singer brings 'tidings of comfort and joy'", answer: "God Rest Ye Merry, Gentlemen", points: 400, used: false },
+                { question: "This French carol translates to 'The Midnight Christians' in English", answer: "O Holy Night", points: 600, used: false },
+                { question: "This carol was originally written for Thanksgiving, not Christmas", answer: "Jingle Bells", points: 800, used: false },
+                { question: "This carol mentions 'angels bending near the earth' in its refrain", answer: "It Came Upon the Midnight Clear", points: 1000, used: false }
             ]
         },
         {
-            name: "Christmas Traditions",
+            name: "Santa's Workshop",
             questions: [
-                { question: "What do people traditionally hang on their fireplace?", answer: "Stockings", points: 100, used: false },
-                { question: "What plant do people kiss under?", answer: "Mistletoe", points: 200, used: false },
-                { question: "Which country started the tradition of Christmas trees?", answer: "Germany", points: 300, used: false },
-                { question: "What is the day after Christmas called?", answer: "Boxing Day", points: 400, used: false },
-                { question: "What do Jewish people celebrate around the same time as Christmas?", answer: "Hanukkah", points: 500, used: false }
+                { question: "According to tradition, Santa checks this list twice to see who's naughty or nice", answer: "The Naughty and Nice List", points: 200, used: false },
+                { question: "This number of reindeer pull Santa's sleigh, not counting Rudolph", answer: "Eight", points: 400, used: false },
+                { question: "Santa enters homes through this household feature when there's no chimney", answer: "The keyhole", points: 600, used: false },
+                { question: "In some traditions, Santa leaves these for naughty children instead of presents", answer: "Lumps of coal", points: 800, used: false },
+                { question: "This is Santa's zip code at the North Pole according to Canada Post", answer: "H0H 0H0", points: 1000, used: false }
+            ]
+        },
+        {
+            name: "Christmas Foods",
+            questions: [
+                { question: "This spiced holiday drink is also called 'milk punch'", answer: "Eggnog", points: 200, used: false },
+                { question: "These colorful striped candies are often hung on Christmas trees", answer: "Candy canes", points: 400, used: false },
+                { question: "This dried fruit is traditionally placed in Christmas stockings", answer: "Oranges", points: 600, used: false },
+                { question: "This British Christmas dessert contains dried fruits and is soaked in alcohol", answer: "Christmas pudding", points: 800, used: false },
+                { question: "In Mexico, this fruit salad is a traditional Christmas Eve dish", answer: "Ensalada de Nochebuena", points: 1000, used: false }
+            ]
+        },
+        {
+            name: "Christmas Around World",
+            questions: [
+                { question: "In this country, Christmas is celebrated with beach barbecues & surfing", answer: "Australia", points: 200, used: false },
+                { question: "In Sweden, this straw goat figure is a popular Christmas decoration", answer: "The Gävle goat", points: 400, used: false },
+                { question: "In Venezuela, people travel to church services on these on Christmas morning", answer: "Roller skates", points: 600, used: false },
+                { question: "In Ukraine, finding this in your Christmas pudding means good luck", answer: "A spider web", points: 800, used: false },
+                { question: "In this country, KFC has become a popular Christmas Eve meal tradition", answer: "Japan", points: 1000, used: false }
             ]
         },
         {
             name: "Christmas Movies",
             questions: [
-                { question: "Who tries to steal Christmas in Dr. Seuss' story?", answer: "The Grinch", points: 100, used: false },
-                { question: "What is the name of the boy in 'The Polar Express'?", answer: "Hero Boy", points: 200, used: false },
-                { question: "In 'Home Alone', where is the family going for Christmas?", answer: "Paris", points: 300, used: false },
-                { question: "What does Buddy the Elf put on spaghetti?", answer: "Maple syrup", points: 400, used: false },
-                { question: "In 'A Christmas Story', what does Ralphie want for Christmas?", answer: "A Red Ryder BB gun", points: 500, used: false }
-            ]
-        },
-        {
-            name: "Christmas Around the World",
-            questions: [
-                { question: "In which country is Christmas celebrated in summer?", answer: "Australia", points: 100, used: false },
-                { question: "What is Santa Claus called in France?", answer: "Père Noël", points: 200, used: false },
-                { question: "In Mexico, what do children break to get candy?", answer: "Piñata", points: 300, used: false },
-                { question: "Which Scandinavian country gives the Christmas tree to London each year?", answer: "Norway", points: 400, used: false },
-                { question: "In Italy, what does La Befana bring to children on January 6th?", answer: "Candy or coal", points: 500, used: false }
+                { question: "In this 1946 film, an angel shows what life would be like if he'd never been born", answer: "It's a Wonderful Life", points: 200, used: false },
+                { question: "This 2004 animated film features a train ride to the North Pole", answer: "The Polar Express", points: 400, used: false },
+                { question: "Will Ferrell plays a human raised by elves in this 2003 Christmas comedy", answer: "Elf", points: 600, used: false },
+                { question: "This 1990 film features Macaulay Culkin defending his home from burglars", answer: "Home Alone", points: 800, used: false },
+                { question: "Bill Murray plays a cynical TV executive in this 1988 Christmas classic", answer: "Scrooged", points: 1000, used: false }
             ]
         }
     ]
@@ -82,7 +92,7 @@ function initGame() {
     document.getElementById('reset-game').addEventListener('click', resetGame);
     document.getElementById('play-again').addEventListener('click', resetGame);
     document.getElementById('show-answer').addEventListener('click', showAnswer);
-    document.getElementById('no-one').addEventListener('click', closeQuestion);
+    document.getElementById('no-one').addEventListener('click', markQuestionAsUsed);
     
     // Add input animations
     setupInputAnimations();
@@ -94,7 +104,7 @@ function setupInputAnimations() {
     inputs.forEach(input => {
         input.addEventListener('focus', function() {
             this.parentElement.parentElement.style.transform = 'translateY(-5px)';
-            this.parentElement.parentElement.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+            this.parentElement.parentElement.style.boxShadow = '0 15px 40px rgba(30, 58, 138, 0.15)';
         });
         
         input.addEventListener('blur', function() {
@@ -164,7 +174,7 @@ function createGameBoard() {
     for (let i = 0; i < 5; i++) {
         const pointsHeader = document.createElement('div');
         pointsHeader.className = 'points-header';
-        pointsHeader.textContent = `$${(i + 1) * 100}`;
+        pointsHeader.textContent = `$${(i + 1) * 200}`;
         questionsGrid.appendChild(pointsHeader);
         
         // Create question cells for each category
@@ -239,8 +249,7 @@ function awardPoints(teamIndex) {
     gameState.teams[teamIndex].score += points;
     
     // Mark question as used
-    gameState.currentQuestion.used = true;
-    gameState.usedQuestions++;
+    markQuestionAsUsed();
     
     // Update UI
     updateScoreboard();
@@ -251,6 +260,24 @@ function awardPoints(teamIndex) {
     // Check if game is over
     if (gameState.usedQuestions >= gameState.totalQuestions) {
         setTimeout(endGame, 500);
+    }
+}
+
+// Mark question as used (for "No One Got It" case)
+function markQuestionAsUsed() {
+    if (gameState.currentQuestion) {
+        gameState.currentQuestion.used = true;
+        gameState.usedQuestions++;
+        
+        // Update UI
+        updateGameBoard();
+        updateQuestionsRemaining();
+        closeQuestion();
+        
+        // Check if game is over
+        if (gameState.usedQuestions >= gameState.totalQuestions) {
+            setTimeout(endGame, 500);
+        }
     }
 }
 
@@ -368,5 +395,4 @@ function resetGame() {
 }
 
 // Initialize the game when the page loads
-
 document.addEventListener('DOMContentLoaded', initGame);
